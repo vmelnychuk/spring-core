@@ -1,4 +1,4 @@
-package vmelnychuk.spring;
+package vmelnychuk.spring.beans;
 
 public class Client {
     private String id;
