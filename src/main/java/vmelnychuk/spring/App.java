@@ -1,6 +1,9 @@
 package vmelnychuk.spring;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vmelnychuk.spring.beans.Client;
+import vmelnychuk.spring.beans.Event;
 import vmelnychuk.spring.loggers.ConsoleEventLogger;
 import vmelnychuk.spring.loggers.EventLogger;
 
@@ -14,11 +17,13 @@ public class App {
     }
 
     public static void main(String[] args) {
-        App app = new App(new Client("1", "John Smith"), new ConsoleEventLogger());
-        app.logEvent("Some event from user 1");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        App app = (App) context.getBean("app");
+        Event event = context.getBean("event", Event.class);
+        event.setMsg("Hello");
+        app.logEvent(event);
     }
-    public void logEvent(String message) {
-        String msg = message.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(msg);
+    public void logEvent(Event event) {
+        eventLogger.logEvent(event);
     }
 }
