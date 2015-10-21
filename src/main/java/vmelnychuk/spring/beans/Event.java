@@ -5,12 +5,13 @@ import java.util.Date;
 import java.util.Random;
 
 public class Event {
-    private int id = new Random().nextInt(Integer.MAX_VALUE);
+    private int id;
     private String msg;
     private Date date;
     private DateFormat dateFormat;
 
     public Event(Date date, DateFormat dateFormat) {
+        this.id = new Random().nextInt(Integer.MAX_VALUE);
         this.date = date;
         this.dateFormat = dateFormat;
     }
